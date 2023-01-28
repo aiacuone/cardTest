@@ -1,6 +1,10 @@
+import { Card } from '@/components'
 import Head from 'next/head'
+import { useState } from 'react'
+import peopleInitial from '../list.json'
 
 export default function Home() {
+  const [people, setPeople] = useState(peopleInitial)
   return (
     <>
       <Head>
@@ -9,7 +13,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main></main>
+      <div class="p-10">
+        <div class="bg-gray-100 grid grid-cols-4 gap-3 p-3">
+          {people.map((person) => {
+            return <Card person={person} key={person.id} />
+          })}
+        </div>
+      </div>
     </>
   )
 }
